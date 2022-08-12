@@ -1,6 +1,7 @@
 
 # start using supervisely API
 # This codes takes some statistics on the video projects
+import os
 import supervisely as sly
 import pandas as pd
 
