@@ -59,10 +59,9 @@ data_df = pd.DataFrame({prCol: prList, dsCol: dsList, vdCol: vdList, nfCol: nfra
 print(data_df)
 
 # save the dataframe to csv
-job_info = api.labeling_job.get_info_by_id(job_id)
-if job_info is None:
-    raise RuntimeError('Labeling job id={!r} not found'.format(job_id))
-dest_dir = os.path.join(sly.TaskPaths.OUT_ARTIFACTS_DIR, "job_id_{}_name_{}".format(job_info.id, job_info.name))
+user_id = int('%%USER_ID%%')
+
+dest_dir = os.path.join(sly.TaskPaths.OUT_ARTIFACTS_DIR, "user_{}".format(user_id))
 sly.fs.mkdir(dest_dir)
 
-data_df.to_csv(os.path.join(dest_dir, 'activity.csv'))
+data_df.to_csv(os.path.join(dest_dir, 'activity.csv')))
