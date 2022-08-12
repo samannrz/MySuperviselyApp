@@ -64,4 +64,4 @@ user_id = int('%%USER_ID%%')
 dest_dir = os.path.join(sly.TaskPaths.OUT_ARTIFACTS_DIR, "user_{}".format(user_id))
 sly.fs.mkdir(dest_dir)
 
-data_df.to_csv(os.path.join(dest_dir, 'activity.csv')))
+data_df.to_csv(os.path.join(dest_dir, 'activity.csv'))
