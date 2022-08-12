@@ -78,7 +78,10 @@ data_df = pd.DataFrame({prCol: prList, dsCol: dsList, vdCol: vdList, nfCol: nfra
 print(data_df)
 
 # save the dataframe to google sheet
-sfpath = 'C:/Users/SurgAR-User/OneDrive/Documents/Saman/mypythonfolder/supervisely-python-sdk-example/my-gpysheets-3d8d13442005.json'
-sheetID = '1R_2NpRg40U08F2gl4dM0OzXcN4f0IQaW3yfXZmBWqCg'
-sname = 'Sheet1'
-write_to_gsheet(sfpath, sheetID, sname, data_df)
+job_info = api.labeling_job.get_info_by_id(job_id)
+if job_info is None:
+    raise RuntimeError('Labeling job id={!r} not found'.format(job_id))
+dest_dir = os.path.join(sly.TaskPaths.OUT_ARTIFACTS_DIR, "job_id_{}_name_{}".format(job_info.id, job_info.name))
+sly.fs.mkdir(dest_dir)
+
+data_df.to_csv(os.path.join(dest_dir, 'activity.csv'))
